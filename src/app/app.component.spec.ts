@@ -11,7 +11,11 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BirdListComponent } from './birds/bird-list.component';
 import { BirdDetailComponent } from './birds/bird-detail.component';
-import { BirdService } from './services/bird.service';
+import { BirdService } from './_services/index';
+import { TripService } from './_services/index';
+import { AlertService } from './_services/index';
+import { UserService } from './_services/index';
+import { AuthenticationService } from './_services/index';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -43,7 +47,11 @@ describe('AppComponent', () => {
       ],
   providers: [
     HttpClient,
-    BirdService
+    BirdService,
+    TripService,
+    AlertService,
+    UserService,
+    AuthenticationService
   ],
     }).compileComponents();
   }));

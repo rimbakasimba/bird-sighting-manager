@@ -2,8 +2,8 @@ import { TestBed, async, inject } from '@angular/core/testing';
 import { Http, HttpModule, XHRBackend } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { BirdDetailComponent } from './bird-detail.component';
-import { BirdService } from '../services/bird.service';
-import { IBird } from './bird';
+import { BirdService } from '../_services/index';
+import { IBird } from '../_models/index';
 
 describe('BirdDetailComponent', () => {
 

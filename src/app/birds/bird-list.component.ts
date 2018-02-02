@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IBird } from './bird';
-import { BirdService } from '../services/bird.service';
+import { IBird } from '../_models/index';
+import { BirdService } from '../_services/bird.service';
 
 @Component({
     moduleId: module.id,
@@ -8,11 +8,11 @@ import { BirdService } from '../services/bird.service';
     styleUrls: ['bird-list.component.css']
 })
 export class BirdListComponent implements OnInit {
-    pageTitle: string = 'Bird List';
-    imageWidth: number = 100;
-    imageMargin: number = 2;
-    listFilter: string = "";
-    errorMessage: string = "";
+    pageTitle = 'Bird List';
+    imageWidth = 100;
+    imageMargin = 2;
+    listFilter = '';
+    errorMessage = '';
 
     birds: IBird[];
 
@@ -24,10 +24,10 @@ export class BirdListComponent implements OnInit {
         console.log('ngInit called');
         this.birdService.getBirds()
             .subscribe(
-            birds => {
-                console.log('hello');
-                this.birds = birds;
-                console.log(birds);
+            birdCollection => {
+                console.log('hello' + birdCollection.length);
+                this.birds = birdCollection;
+                console.log(birdCollection);
             },
             error => {
                 this.errorMessage = <any>error;
@@ -37,57 +37,35 @@ export class BirdListComponent implements OnInit {
     }
 
     filterBirds(criteriaJSON: string): IBird[] {
-        const birdsList = [
-            {
-                'Id': 1,
-                'CommonName': 'Asian Paradise Flycatcher',
-                'FeatherColor': 'Bluish grey',
-                'Beak': 'Orange',
-                'Description': 'Native to entire asia'
-            },
-            {
-                'Id': 2,
-                'CommonName': 'Green Bee Eater',
-                'FeatherColor': 'Green',
-                'Beak': 'Black',
-                'Description': 'Eats so much bees, that its named after the act'
-            },
-            {
-                'Id': 3,
-                'CommonName': 'White breasted kingfisher',
-                'FeatherColor': 'Blue',
-                'Beak': 'Red',
-                'Description': 'One of the five kingfishers in India, this one is the most common'
+
+        const selectedBirds: IBird[] = new Array<IBird>();
+
+        if (this.birds === null) {
+            throw new Error('Bird data is null');
+        } else {
+            console.log('Bird data is not null');
+            if (this.birds.length === 0) {
+                throw new Error('Bird data is not present');
             }
-        ];
+        }
 
-        let selectedBirds: IBird[] = new Array<IBird>();
-        /*
-                if (this.birds === null) {
-                    throw new Error('Bird data is null');
-                } else {
-                    console.log('Bird data is not null');
-                    if (this.birds.length === 0) {
-                        throw new Error('Bird data is not present');
-                    }
-                }
-        */
         if (criteriaJSON != null) {
-
+            console.log('We have ' + this.birds.length + ' birds');
             // console.log(criteriaJSON);
             const selectionCriteria = JSON.parse(criteriaJSON);
+            console.log(selectionCriteria);
             if (selectionCriteria.Beak !== undefined) {
                 this.birds.forEach((b: IBird) => {
+                    console.log(b.Beak);
                     if (b.Beak === selectionCriteria.Beak) {
                         selectedBirds.push(b);
+                        console.log('Got a match');
                     }
                 });
             } else {
-                console.error('Invalid criteria');
+                console.error('Beak details not provided');
                 throw Error('Invalid criteria');
             }
-        } else {
-            selectedBirds = birdsList;
         }
         return selectedBirds;
     }

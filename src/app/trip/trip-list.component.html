@@ -1,0 +1,31 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{pageTitle}}
+    </div>
+
+
+    <div class='panel-body'>
+
+        <div class='table-responsive'>
+            <table class='table' *ngIf='trips && trips.length'>
+                <thead>
+                    <th>Details</th>
+                    <th>State</th>
+                    <th>Place</th>
+                    <th>Date</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let trip in trips">
+                        <td><a [routerLink]="['/trips', trip.Id]">{{trip.Id}}</a></td>
+                        <td>{{trip.State}}</td>
+                        <td>{{trip.Location}}</td>
+                        <td>{{trip.Date}}</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+
+</div>

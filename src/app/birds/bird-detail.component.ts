@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IBird } from './bird';
+import { IBird } from '../_models/index';
 
 @Component({
     selector: 'app-bird-detail',

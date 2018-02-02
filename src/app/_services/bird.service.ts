@@ -1,0 +1,74 @@
+import { Injectable } from '@angular/core';
+import { Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+// import { AuthHttp } from 'angular-jwt';
+import { HttpClient } from '@angular/common/http';
+
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/catch';
+import 'rxjs/observable';
+
+import { IBird, Bird, BirdSighting } from '../_models/index';
+import { IBirdResponse } from '../_models/index';
+
+@Injectable()
+export class BirdService {
+
+    private url = 'data/birdList.json';
+    private urlAllSpecies = 'data/allSpecies.json';
+    // TODO: Replace Http with our secured HttpWrapper as an interceptor
+    constructor(private _http: HttpClient) {
+
+    }
+
+    /*
+    Gets all species available in India. Static list
+    */
+    getAllSpecies(): IBird[] {
+        const species: Bird[] = new Array<Bird>();
+        let i: number;
+        const bird: Bird = new Bird(0, '', '', '', '');
+        for (i = 0; i < 1400; i++) {
+            species.push(bird);
+        }
+        return species;
+        /*
+         const a = this._http.get<IBirdResponse>(this.urlAllSpecies);
+         return a.map((response: IBirdResponse) =>  (<IBirdResponse>response).data )
+             .catch(this.errorHandler);
+             */
+    }
+
+    getMySpecies(userId: string): Observable<IBird[]> {
+        const a = this._http.get<IBirdResponse>(this.url);
+        return a.map((response: IBirdResponse) => (<IBirdResponse>response).data)
+            .catch(this.errorHandler);
+    }
+    /*
+        getMySighting(location: string) : Observable<IBirdSighting[]> {
+            return new Observable<BirdSighting>();
+        }
+    */
+    getBirds(): Observable<IBird[]> {
+        console.log('Service->getBirds called');
+        const a = this._http.get<IBirdResponse>(this.url);
+        return a.map((response: IBirdResponse) => (<IBirdResponse>response).data)
+            .catch(this.errorHandler);
+    }
+
+    getBird(id: number): Observable<IBird> {
+        const prod = this.getBirds()
+            .map((birds: IBird[]) => birds.find(p => p.Id === id));
+        return prod;
+    }
+
+    addMySightingToTrip (specieId: number, tripId: string): Observable<Boolean> {
+        return Observable.create(true);
+    }
+
+    private errorHandler(error: Response) {
+        console.error(error);
+        return Observable.throw(error.json().error || 'Server error');
+    }
+}
