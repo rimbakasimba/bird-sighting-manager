@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
-import { Trip, ITripResponse } from '../_models/index';
+import { Trip, ITripResponse } from './trip';
 import { errorHandler } from '@angular/platform-browser/src/browser';
 
 @Injectable()
@@ -23,7 +23,7 @@ export class TripService {
         this.myTrips = new Array<Trip>();
     }
 
-    getMyTrips(userId: string): Observable<Trip[]> {
+    getMyTrips(userId: number): Observable<Trip[]> {
         const a = this._http.get<ITripResponse>(this.url);
         return a.map((response: ITripResponse) => (<ITripResponse>response).data)
             .catch(this.errorHandler);

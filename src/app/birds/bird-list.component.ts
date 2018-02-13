@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IBird } from '../_models/index';
-import { BirdService } from '../_services/bird.service';
+import { IBird } from './bird';
+import { BirdService } from '../birds/bird.service';
 
 @Component({
     moduleId: module.id,

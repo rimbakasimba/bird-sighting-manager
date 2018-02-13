@@ -9,8 +9,8 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/observable';
 
-import { IBird, Bird, BirdSighting } from '../_models/index';
-import { IBirdResponse } from '../_models/index';
+import { IBird, Bird, IBirdResponse } from './bird';
+import { BirdSighting } from './bird-sighting';
 
 @Injectable()
 export class BirdService {

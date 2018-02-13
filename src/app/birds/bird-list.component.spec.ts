@@ -5,8 +5,8 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 
 import { MockBackend } from '@angular/http/testing';
 import { BirdListComponent } from './bird-list.component';
-import { BirdService } from '../_services/bird.service';
-import { IBird } from '../_models/index';
+import { BirdService } from './index';
+import { IBird } from './index';
 
 describe('BirdListComponent', () => {
 

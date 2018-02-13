@@ -1,7 +1,8 @@
 ﻿import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AlertService, UserService } from '../_services/index';
+import { UserService } from '../user/user.service';
+import { AlertService} from '../alert/alert.service';
 
 @Component({
     moduleId: module.id,

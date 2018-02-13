@@ -11,11 +11,11 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BirdListComponent } from './birds/bird-list.component';
 import { BirdDetailComponent } from './birds/bird-detail.component';
-import { BirdService } from './_services/index';
-import { TripService } from './_services/index';
-import { AlertService } from './_services/index';
-import { UserService } from './_services/index';
-import { AuthenticationService } from './_services/index';
+import { BirdService } from './birds/index';
+import { TripService } from './trip/index';
+import { AlertService } from './alert/index';
+import { UserService } from './user/index';
+import { AuthenticationService } from './user/index';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {

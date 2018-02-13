@@ -1,7 +1,7 @@
 import { Http, HttpModule, RequestOptions, ResponseOptions, XHRBackend } from '@angular/http';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
-import { TripService } from './trip.service';
+import { TripService } from './index';
 import { async, TestBed, inject } from '@angular/core/testing';
 import { MockBackend } from '@angular/http/testing';
 
@@ -48,8 +48,8 @@ describe('Trip Service', () => {
                 });
 
             })
-        ); 
- 
+        );
+
         it('Upon adding a new trip, get the newly created id',
             inject([TripService, XHRBackend], (tripService, mockBackend) => {
 
