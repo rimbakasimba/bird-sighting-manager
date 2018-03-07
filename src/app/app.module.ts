@@ -6,7 +6,9 @@ import { RequestOptions, XHRBackend } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // used to create fake backend
-import { fakeBackendProvider } from './_helpers/index';
+import { fakeBirdBackendProvider } from './_helpers/index';
+import { fakeTripBackendProvider } from './_helpers/index';
+import { fakeUserBackendProvider } from './_helpers/index';
 import { AlertComponent } from './alert/index';
 import { AuthGuard } from './_guards/index';
 import { JwtInterceptor } from './_helpers/index';
@@ -57,7 +59,9 @@ import { routing } from './app.routing';
       multi: true
     },
     // provider used to create fake backend
-    fakeBackendProvider
+    fakeTripBackendProvider,
+    fakeBirdBackendProvider,
+    fakeUserBackendProvider
   ],
   bootstrap: [AppComponent]
 })

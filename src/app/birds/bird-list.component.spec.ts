@@ -1,4 +1,5 @@
 import { TestBed, async, inject, ComponentFixture, tick, fakeAsync } from '@angular/core/testing';
+import { Component, DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { Http, HttpModule, XHRBackend } from '@angular/http';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
@@ -7,6 +8,11 @@ import { MockBackend } from '@angular/http/testing';
 import { BirdListComponent } from './bird-list.component';
 import { BirdService } from './index';
 import { IBird } from './index';
+
+import { RouterLinkDirectiveStub } from '../router-stubs.module';
+
+@Component({ selector: 'router-outlet', template: '' })
+class RouterOutletStubComponent { }
 
 describe('BirdListComponent', () => {
 
@@ -18,7 +24,9 @@ describe('BirdListComponent', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       declarations: [
-        BirdListComponent
+        BirdListComponent,
+        RouterLinkDirectiveStub,
+        RouterOutletStubComponent
       ],
       providers: [
         BirdService,

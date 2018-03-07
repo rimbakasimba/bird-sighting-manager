@@ -65,7 +65,7 @@ export class FakeUserBackendInterceptor implements HttpInterceptor {
                     // find user by id in users array
                     const urlParts = request.url.split('/');
                     const id = parseInt(urlParts[urlParts.length - 1]);
-                    const matchedUsers = users.filter(usr => usr.id === id );
+                    const matchedUsers = users.filter(usr => usr.id === id);
                     const user = matchedUsers.length ? matchedUsers[0] : null;
 
                     return Observable.of(new HttpResponse({ status: 200, body: user }));
@@ -81,7 +81,7 @@ export class FakeUserBackendInterceptor implements HttpInterceptor {
                 const newUser = request.body;
 
                 // validation
-                const duplicateUser = users.filter(user => user.username === newUser.username ).length;
+                const duplicateUser = users.filter(user => user.username === newUser.username).length;
                 if (duplicateUser) {
                     return Observable.throw('Username "' + newUser.username + '" is already taken');
                 }
@@ -126,15 +126,15 @@ export class FakeUserBackendInterceptor implements HttpInterceptor {
 
         })
 
-        // call materialize and dematerialize to ensure delay even if an error is thrown
-        //   (https://github.com/Reactive-Extensions/RxJS/issues/648)
-        .materialize()
-        .delay(500)
-        .dematerialize();
+            // call materialize and dematerialize to ensure delay even if an error is thrown
+            //   (https://github.com/Reactive-Extensions/RxJS/issues/648)
+            .materialize()
+            .delay(500)
+            .dematerialize();
     }
 }
 
-export let fakeBackendProvider = {
+export let fakeUserBackendProvider = {
     // use fake backend in place of Http service for backend-less development
     provide: HTTP_INTERCEPTORS,
     useClass: FakeUserBackendInterceptor,

@@ -42,7 +42,19 @@ export class FakeBirdBackendInterceptor implements HttpInterceptor {
 
                 return Observable.of(new HttpResponse({ status: 200, body: body }));
             }
+
+            // pass through any requests not handled above
+            return next.handle(request);
+
         });
     }
 }
+
+
+export let fakeBirdBackendProvider = {
+    // use fake backend in place of Http service for backend-less development
+    provide: HTTP_INTERCEPTORS,
+    useClass: FakeBirdBackendInterceptor,
+    multi: true
+};
 

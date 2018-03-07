@@ -24,6 +24,7 @@
                 </tbody>
 
             </table>
+            <div *ngIf='trips && trips.length == 0'>No trips created yet. <a [routerLink]="['/trips/create']">Create New Trip</a> </div>
         </div>
 
     </div>

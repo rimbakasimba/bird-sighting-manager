@@ -24,16 +24,18 @@ export class TripService {
     }
 
     getMyTrips(userId: number): Observable<Trip[]> {
-        const a = this._http.get<ITripResponse>(this.url);
+        const restUrl = '/api/' + userId + 'trips';
+        const a = this._http.get<ITripResponse>(restUrl);
         return a.map((response: ITripResponse) => (<ITripResponse>response).data)
             .catch(this.errorHandler);
     }
 
-    createTrip(location: string, date: string): number {
-        const trip: Trip = new Trip(0, location, date, null);
+    createTrip(userId: number, state: string, location: string, dateFrom: Date, dateTo: Date): number {
+        const restUrl = '/api/' + userId + 'trips';
+        const trip: Trip = new Trip(0, location, state, dateFrom, dateTo);
         trip.Id = 5365;
         this.myTrips.push(trip);
-        const resp = this._http.post(this.postUrl, trip);
+        const resp = this._http.post(restUrl, trip);
         resp
             .do(r => {
                 console.log('Got data' + r);

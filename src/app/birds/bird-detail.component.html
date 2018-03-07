@@ -1,0 +1,15 @@
+<div class="panel panel-primary" *ngIf='bird'>
+    <div class="panel-heading">
+        {{pageTitle}}
+    </div>
+
+    <div class='panel-body'>
+       {{bird.CommonName}}'s description: {{ bird.Description}}
+    </div>
+
+    <div class='panel-footer'>
+        <a class="btn btn-default" (click)="OnBack()">
+             <i class='glyphicon glyphicon-chevron-left' ></i>Back to list
+         </a>
+    </div>
+</div>

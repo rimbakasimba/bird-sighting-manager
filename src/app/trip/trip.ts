@@ -3,7 +3,8 @@ export class Trip {
         public Id: number,
         public Location: string,
         public State: string,
-        public Date: DateConstructor) {
+        public DateFrom: Date,
+        public DateTo: Date) {
 
     }
 }
