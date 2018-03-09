@@ -1,0 +1,43 @@
+<div class="panel panel-primary">
+        <div class="panel-heading">
+            {{pageTitle}}
+        </div>
+    
+    
+        <div class='panel-body'>
+    
+            <div class='table-responsive'>
+                <table class='table'>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let itm of allSpecies | async">
+                            <td>{{itm.Specie.Name}}</td>
+                            <td>
+                                <a [routerLink]="['/birds/:Id', itm.Specie.ID]">Go To Specie</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+<!--
+<ul>
+    <div *ngFor="let itm of allSpecies | async">
+        <div>
+            <h3>
+                <a href="#">{{itm.Specie.Name}}</a>
+            </h3>
+            <p>{{itm.Specie}}</p>
+            <div>
+                <a href="{{itm.Specie.ID}}" target="_blank" class="btn btn-danger">Go To Specie</a>
+            </div>
+        </div>
+    </div>
+</ul>
+--> 

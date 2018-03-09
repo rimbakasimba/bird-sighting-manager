@@ -12,13 +12,16 @@ import 'rxjs/observable';
 import { IBird, Bird, IBirdResponse } from './bird';
 import { BirdSighting } from './bird-sighting';
 
+import { AngularFireDatabase, ChildEvent } from 'angularfire2/database';
+
 @Injectable()
 export class BirdService {
 
     private url = 'data/birdList.json';
     private urlAllSpecies = 'data/allSpecies.json';
     // TODO: Replace Http with our secured HttpWrapper as an interceptor
-    constructor(private _http: HttpClient) {
+    constructor(private _http: HttpClient,
+        private db: AngularFireDatabase) {
 
     }
 
@@ -38,6 +41,15 @@ export class BirdService {
          return a.map((response: IBirdResponse) =>  (<IBirdResponse>response).data )
              .catch(this.errorHandler);
              */
+    }
+
+    getAllSpeciesFromFirebase(): Observable<any> {
+        console.log('Attempting to get all species from firebase');
+        const species: Bird[] = new Array<Bird>();
+        const dataList = this.db.list('/AllSpecies');
+const evt = new  Array<ChildEvent>('child_added');
+       return  dataList.valueChanges(evt);
+        // .map(data => IBird[]);
     }
 
     getMySpecies(userId: string): Observable<IBird[]> {
@@ -71,4 +83,10 @@ export class BirdService {
         console.error(error);
         return Observable.throw(error.json().error || 'Server error');
     }
+}
+
+
+export class BirdDataInFirebase {
+   public id: number;
+   public name: string;
 }

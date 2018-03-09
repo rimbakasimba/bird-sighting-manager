@@ -5,6 +5,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RequestOptions, XHRBackend } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
 // used to create fake backend
 import { fakeBirdBackendProvider } from './_helpers/index';
 import { fakeTripBackendProvider } from './_helpers/index';
@@ -14,6 +18,7 @@ import { AuthGuard } from './_guards/index';
 import { JwtInterceptor } from './_helpers/index';
 
 import { AppComponent } from './app.component';
+import { BirdAllSpecieListComponent } from './birds/bird-all-specie-list.component';
 import { BirdListComponent } from './birds/bird-list.component';
 import { BirdDetailComponent } from './birds/bird-detail.component';
 import { BirdService } from './birds/index';
@@ -26,10 +31,12 @@ import { RegisterComponent } from './user/index';
 import { HomeComponent } from './home/index';
 import { MyTripListComponent } from './trip/trip-list.component';
 import { routing } from './app.routing';
+import { firebase } from '../environments/firebaseConfig';
 
 @NgModule({
   declarations: [
     AppComponent,
+    BirdAllSpecieListComponent,
     BirdListComponent,
     BirdDetailComponent,
     AlertComponent,
@@ -43,7 +50,10 @@ import { routing } from './app.routing';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    routing
+    routing,
+    AngularFireModule.initializeApp(firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
 
   providers: [

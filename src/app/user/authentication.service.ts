@@ -47,7 +47,7 @@ export class AuthenticationService {
                 return user;
             });
     }
-
+/*  backup code
     loginUsingJWT(userName: string, password: string): Observable<string> {
 
         this.headers = new Headers();
@@ -77,7 +77,7 @@ export class AuthenticationService {
                         // store userName and jwt token in local storage to keep user logged in between page refreshes
                         localStorage.setItem(this.localStorageKey, this.token);
                         // TODO: In birdion, set the secured flag to true to enable HTTPS
-                       /*
+                       
                         const expireDate = new Date();
                         expireDate.setHours(expireDate.getHours() + this.cookieExpirationLength);
                         const cookieOptions: CookieOptionsArgs = {
@@ -87,7 +87,7 @@ export class AuthenticationService {
                             expires: expireDate
                         };
                           this.cookieService.put(this.cookieKey, this.token, cookieOptions);
-                        */
+                       
                        // const tokenInfo = this.jwtHelper.decodeToken(this.token);
 
                         // return display name to indicate successful login
@@ -104,7 +104,7 @@ export class AuthenticationService {
                 return Observable.throw(new Error(error));
             });
     }
-
+*/
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
