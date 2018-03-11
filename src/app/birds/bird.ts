@@ -1,6 +1,6 @@
 export interface IBird {
     Id: number;
-    CommonName: string;
+    Name: string;
     FeatherColor: string;
     Beak: string;
     Description: string;
@@ -9,7 +9,7 @@ export interface IBird {
 export class Bird implements IBird {
     constructor(
         public Id: number,
-        public CommonName: string,
+        public Name: string,
         public FeatherColor: string,
         public Beak: string,
         public Description: string) {

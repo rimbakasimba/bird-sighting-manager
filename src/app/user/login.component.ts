@@ -2,7 +2,8 @@
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AuthenticationService } from '../user/authentication.service';
-import { AlertService} from '../alert/alert.service';
+import { UserService } from '../user/user.service';
+import { AlertService } from '../alert/alert.service';
 
 @Component({
     moduleId: module.id,
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
-        private alertService: AlertService) { }
+        private alertService: AlertService,
+        private userService: UserService) { }
 
     ngOnInit() {
         // reset login status
@@ -30,14 +32,17 @@ export class LoginComponent implements OnInit {
 
     login() {
         this.loading = true;
-        this.authenticationService.login(this.model.username, this.model.password)
-            .subscribe(
-                data => {
-                    this.router.navigate([this.returnUrl]);
-                },
-                error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                });
+        this.userService.login(this.model.username, this.model.password)
+            .then((data) => {     /*  Need an aero function here as regular callback wil have 'this' as the Promise itself  */
+                console.log('User logged in successfully, with details ', data.uid);
+                localStorage.setItem('currentUserFirebase', data.uid);
+                this.router.navigate([this.returnUrl]);
+                this.loading = true;
+            })
+            .catch((error) => {
+                console.log(error);
+                this.alertService.error(error);
+                this.loading = false;
+            });
     }
 }

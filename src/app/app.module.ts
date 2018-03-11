@@ -21,6 +21,7 @@ import { AppComponent } from './app.component';
 import { BirdAllSpecieListComponent } from './birds/bird-all-specie-list.component';
 import { BirdListComponent } from './birds/bird-list.component';
 import { BirdDetailComponent } from './birds/bird-detail.component';
+import { BirdListFilter} from './birds/bird-list.filter';
 import { BirdService } from './birds/index';
 import { TripService } from './trip/index';
 import { AlertService } from './alert/index';
@@ -39,6 +40,7 @@ import { firebase } from '../environments/firebaseConfig';
     BirdAllSpecieListComponent,
     BirdListComponent,
     BirdDetailComponent,
+    BirdListFilter,
     AlertComponent,
     HomeComponent,
     LoginComponent,

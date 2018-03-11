@@ -6,29 +6,34 @@
 
     <div class='panel-body'>
 
+        Filter Birds:
+        <input type="text" name='birdListFilter' ng-model="birdListFilter" #birdListFilter />
         <div class='table-responsive'>
             <table class='table' *ngIf='birds && birds.length'>
                 <thead>
                     <tr>
                         <th>Details</th>
-                        <th>Common Name</th>
+                        <th>Name</th>
                         <th>FeatherColor</th>
                         <th>Beak</th>
                         <th>Image</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor='let bird of birds'>
-                        <td><a [routerLink]="['/birds', bird.Id]">{{bird.Id}}</a></td>
-                        <td>{{bird.CommonName}}
-                        <td>{{bird.FeatherColor}}</td>
-                        <td>{{bird.Beak}}</td>
-                        <td><img src="{{'/app/assets/images/birds/' + bird.Id + '.jpg'}}" [style.margin.px]='imageMargin'
-                                [style.width.px]='imageWidth' /></td>
+                    <tr *ngFor='let bird of birds | listFilter : birdListFilter.value : true : "Name"  '>
+                        <td>
+                            <a [routerLink]="['/birds', bird.Id]">{{bird.Id}}</a>
+                        </td>
+                        <td>{{bird.Name}}
+                            <td>{{bird.FeatherColor}}</td>
+                            <td>{{bird.Beak}}</td>
+                            <td>
+                                <img src="{{'/app/assets/images/birds/' + bird.Id + '.jpg'}}" [style.margin.px]='imageMargin'
+                                    [style.width.px]='imageWidth' />
+                            </td>
                     </tr>
                 </tbody>
             </table>
 
         </div>
     </div>
-    

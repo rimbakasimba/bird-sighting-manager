@@ -47,6 +47,10 @@ export class AuthenticationService {
                 return user;
             });
     }
+
+    loginToFirebase(username: string, password: string) {
+        
+    }
 /*  backup code
     loginUsingJWT(userName: string, password: string): Observable<string> {
 

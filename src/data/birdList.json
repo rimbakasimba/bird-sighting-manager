@@ -2,21 +2,21 @@
     "data": [  
     {
         "Id": 1,
-        "CommonName": "Asian Paradise Flycatcher",
+        "Name": "Asian Paradise Flycatcher",
         "FeatherColor": "Bluish grey",
         "Beak": "Orange" ,
         "Description": "Native to entire asia"
     },
     {
         "Id": 2,
-        "CommonName": "Green Bee Eater",
+        "Name": "Green Bee Eater",
         "FeatherColor": "Green",
         "Beak": "Black" ,
         "Description": "Eats so much bees, that its named after the act"
     },
     {
         "Id": 3,
-        "CommonName": "White breasted kingfisher",
+        "Name": "White breasted kingfisher",
         "FeatherColor": "Blue",
         "Beak": "Red" ,
         "Description": "One of the five kingfishers in India, this one is the most common"

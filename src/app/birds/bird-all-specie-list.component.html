@@ -5,7 +5,7 @@
     
     
         <div class='panel-body'>
-    
+                Filter Birds: <input type="text" name='birdListFilter' ng-model="birdListFilter" #birdListFilter />
             <div class='table-responsive'>
                 <table class='table'>
                     <thead>
@@ -15,7 +15,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let itm of allSpecies | async">
+                        <tr *ngFor="let itm of allSpecies | async |  listFilter : birdListFilter.value : false : 'Name' : 'Specie'">
                             <td>{{itm.Specie.Name}}</td>
                             <td>
                                 <a [routerLink]="['/birds/:Id', itm.Specie.ID]">Go To Specie</a>
@@ -26,18 +26,4 @@
             </div>
         </div>
     </div>
-<!--
-<ul>
-    <div *ngFor="let itm of allSpecies | async">
-        <div>
-            <h3>
-                <a href="#">{{itm.Specie.Name}}</a>
-            </h3>
-            <p>{{itm.Specie}}</p>
-            <div>
-                <a href="{{itm.Specie.ID}}" target="_blank" class="btn btn-danger">Go To Specie</a>
-            </div>
-        </div>
-    </div>
-</ul>
---> 
+    

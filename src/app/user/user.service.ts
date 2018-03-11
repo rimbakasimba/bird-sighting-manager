@@ -3,9 +3,12 @@ import { HttpClient } from '@angular/common/http';
 
 import { User } from './index';
 
+import { AngularFireAuth } from 'angularfire2/auth';
+
 @Injectable()
 export class UserService {
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient,
+        private db: AngularFireAuth) { }
 
     getAll() {
         return this.http.get<User[]>('/api/users');
@@ -15,8 +18,13 @@ export class UserService {
         return this.http.get('/api/users/' + id);
     }
 
-    create(user: User) {
-        return this.http.post('/api/users', user);
+    login(emailId: string, password: string) {
+        return this.db.auth.signInWithEmailAndPassword(emailId, password);
+    }
+
+    createUser(user: User) {
+        return this.db.auth.createUserWithEmailAndPassword(user.emailId, user.password);
+        // return this.http.post('/api/users', user);
     }
 
     update(user: User) {
